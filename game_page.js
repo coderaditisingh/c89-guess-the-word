@@ -4,6 +4,9 @@ x_score=0;
 y=localStorage.getItem("player2_name");
 y_score=0;
 
+ans_turn=x;
+question_turn=y;
+
 document.getElementById("player_1_name").innerHTML = x + " : ";
 document.getElementById("p1_score").innerHTML=x_score;
 
@@ -41,4 +44,48 @@ function send()
     cb='<br><br><button class="btn btn-info" onclick="check()">Check</button>';
     row=qw+ib+cb;
     document.getElementById("output").innerHTML=row;
+    document.getElementById("word").value=" ";
+
+}
+
+function check()
+{
+    get_answer=document.getElementById("icb").value;
+    ans=get_answer.toLowerCase();
+    console.log(ans);
+    if(ans==word)
+    {
+      if(ans_turn==x)
+      {
+          x_score++;
+          document.getElementById("p1_score").innerHTML=x_score;
+      }
+      else
+      {
+        y_score++;
+        document.getElementById("p2_score").innerHTML=y_score;
+    }
+    }
+    if(question_turn==x)
+    {
+        question_turn=y;
+        document.getElementById("player_question").innerHTML="Question turn : " + y ;
+    }
+    else
+    {
+        question_turn=x;
+        document.getElementById("player_question").innerHTML="Question turn : " + x ;
+    }
+
+
+    if(ans_turn==x)
+    {
+        ans_turn=y;
+        document.getElementById("player_answer").innerHTML="answer turn : " + y ;
+    }
+    else
+    {
+        ans_turn=x;
+        document.getElementById("player_answer").innerHTML="answer turn : " + x ;
+    }
 }
